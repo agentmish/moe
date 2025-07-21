@@ -1,0 +1,78 @@
+Spot REST APIAccount DataDelete Export Report
+Delete Export Report
+POST
+https://api.kraken.com/0/private/RemoveExport
+
+Delete exported trades/ledgers report
+
+API Key Permissions Required: Data - Export data
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+id
+string
+REQUIRED
+
+ID of report to delete or cancel
+
+type
+string
+REQUIRED
+
+delete can only be used for reports that have already been processed. Use cancel for queued or processing reports.
+
+Possible values: [cancel, delete]
+
+Responses​
+200
+
+Export report deleted or cancelled
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+delete
+boolean
+
+Whether deletion was successful
+
+cancel
+boolean
+
+Whether cancellation was successful
+
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 1695828490,
+  "id": "1234556",
+  "type": "cancel"
+}
+
+Previous
+Retrieve Data Export
+Next
+Trading

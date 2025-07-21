@@ -1,0 +1,96 @@
+Spot REST APIFundingGet Withdrawal Methods
+Get Withdrawal Methods
+POST
+https://api.kraken.com/0/private/WithdrawMethods
+
+Retrieve a list of withdrawal methods available for the user.
+
+API Key Permissions Required: Funds permissions - Query and Funds permissions - Withdraw
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+asset
+string
+
+Filter methods for specific asset
+
+aclass
+string
+
+Filter methods for specific asset class
+
+Default value: currency
+network
+string
+
+Filter methods for specific network
+
+Responses​
+200
+
+Withdrawal methods retrieved.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object[]
+
+Withdrawal Methods
+
+Array [
+asset
+string
+
+Name of asset being withdrawn
+
+method
+string
+
+Name of the withdrawal method
+
+network
+string
+
+Name of the blockchain or network being withdrawn on
+
+minimum
+string
+
+Minimum net amount that can be withdrawn right now
+
+]
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 0,
+  "asset": "string",
+  "aclass": "currency",
+  "network": "string"
+}
+
+Previous
+Get Status of Recent Deposits
+Next
+Get Withdrawal Addresses

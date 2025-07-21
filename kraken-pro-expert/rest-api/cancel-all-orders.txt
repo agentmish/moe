@@ -1,0 +1,62 @@
+Spot REST APITradingCancel All Orders
+Cancel All Orders
+POST
+https://api.kraken.com/0/private/CancelAll
+
+Cancel all open orders
+
+API Key Permissions Required: Orders and trades - Create & modify orders or Orders and trades - Cancel & close orders
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+Responses​
+200
+
+Open orders cancelled.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+count
+int32
+
+Number of orders cancelled
+
+pending
+boolean
+
+If true, orders are pending cancellation
+
+error
+array[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 1695828436
+}
+
+Previous
+Cancel Order
+Next
+Cancel All Orders After X

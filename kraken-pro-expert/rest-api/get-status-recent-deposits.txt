@@ -1,0 +1,164 @@
+Spot REST APIFundingGet Status of Recent Deposits
+Get Status of Recent Deposits
+POST
+https://api.kraken.com/0/private/DepositStatus
+
+Retrieve information about recent deposits. Results are sorted by recency, use the cursor parameter to iterate through list of deposits (page size equal to value of limit) from newest to oldest. API Key Permissions Required: Funds permissions - Query
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+asset
+string
+
+Filter for specific asset being deposited
+
+aclass
+string
+
+Filter for specific asset class being deposited
+
+Default value: currency
+method
+string
+
+Filter for specific name of deposit method
+
+start
+string
+
+Start timestamp, deposits created strictly before will not be included in the response
+
+end
+string
+
+End timestamp, deposits created strictly after will be not be included in the response
+
+cursor
+object
+
+true/false to enable/disable paginated response (boolean) or cursor for next page of results (string)
+
+anyOf
+MOD1
+MOD2
+boolean
+
+Enable/disable paginated response
+
+limit
+integer
+
+Number of results to include per page
+
+Default value: 25
+Responses​
+200
+
+Recent deposits retrieved.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+anyOf
+deposit
+MOD2
+method
+string
+
+Name of deposit method
+
+aclass
+string
+
+Asset class
+
+asset
+string
+
+Asset
+
+refid
+string
+
+Reference ID
+
+txid
+string
+
+Method transaction ID
+
+info
+string
+
+Method transaction information
+
+amount
+string
+
+Amount deposited
+
+fee
+
+Fees paid
+
+time
+int32
+
+Unix timestamp when request was made
+
+status
+
+Status of deposit
+For information about the status, please refer to the IFEX financial transaction states.
+
+status-prop
+string
+
+Addition status properties (if available)
+
+
+return A return transaction initiated by Kraken
+onhold Deposit is on hold pending review
+
+Possible values: [return, onhold]
+
+originators
+string[]
+
+Client sending transaction id(s) for deposits that credit with a sweeping transaction
+
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 1695828271,
+  "asset": "XBT",
+  "method": "Bitcoin"
+}
+
+Previous
+Get Deposit Addresses
+Next
+Get Withdrawal Methods

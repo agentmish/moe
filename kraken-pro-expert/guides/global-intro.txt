@@ -1,0 +1,62 @@
+GuidesKraken APIs
+Kraken APIs
+Introduction​
+
+We offer a range of Application Programming Interfaces (APIs) to send order transactions, stream market data and manage accounts on both spot and futures platforms.
+
+Clients can access Kraken via 3 interfaces:
+
+REST API: REST (REpresentational State Transfer) is one of the most widely used architectures for building web-based applications, use this interface for request-response style messages over HTTP.
+
+Websocket API: WebSockets offers 2-way communication over a persisted network connection. This interface is useful for receiving event-driven responses without the need to continuously poll for data.
+
+FIX API: FIX (Financial Information eXchange) is used extensively by institutional firms (buy and sell-side) for sending key-value pair trading data over a session based protocol.
+
+In summary, our spot and futures APIs offer a versatile trading ecosystem. Each API has distinct characteristics, clients can choose a single protocol or combination of protocols that best fit their programming requirements.
+
+Please see the Kraken support article for further information to help choose an API.
+
+Summary of product versus exchange / API​
+	Spot REST	Spot Websocket	Spot FIX	Futures REST	Futures Websocket	Futures FIX
+Market Data	Yes	Yes	Yes	Yes	Yes	Yes
+Order Transactions	Yes	Yes	Yes	Yes	-	Yes
+Account Data	Yes	Yes	-	Yes	Yes	-
+Funding	Yes	-	-	Yes	-	-
+Earn	Yes	-	-	-	-	-
+Subaccounts	Yes	-	-	Yes	-	-
+Charts	-	-	-	Yes	-	-
+Futures and Spot Trading​
+
+Kraken currently has 2 distinct trading engines, for spot and futures. There are many similarities in the behaviours between the engines, however the spot and futures engines have important differences in terms of:
+
+API protocols and endpoints.
+Onboarding process and testing.
+Authentication.
+Rate limits.
+Error messages.
+IP Whitelisting​
+
+API/programmatic traders can connect directly to Kraken AWS point of presence to improve latency and performance by whitelisting IPs. Detailed instructions on connecting to the UAT environment will be provided by Kraken’s support team.
+
+FAQ and Support​
+
+Further information can be found on the API section of our support pages.
+
+If you have problems making API requests, please send us a full copy of the request(s) that you're attempting, including your IP address and all headers, so that Kraken may investigate further.
+
+Notices​
+
+Use of the Kraken APIs is subject to the Kraken Terms & Conditions and Privacy Notice, as well as all other applicable terms and disclosures made available on www.kraken.com.
+
+You must seek our prior permission for certain uses of the Kraken API’s. This includes, but is not limited to, any non-personal commercial use of data from publicly accessible endpoints, such as market data, exchange status, and any other data. You may seek such permission by contacting marketdata@kraken.com.
+
+Previous
+Guides
+Next
+Atomic Amends
+Introduction
+Summary of product versus exchange / API
+Futures and Spot Trading
+IP Whitelisting
+FAQ and Support
+Notices

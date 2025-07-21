@@ -1,0 +1,94 @@
+Spot REST APIMarket DataGet Asset Info
+Get Asset Info
+GET
+https://api.kraken.com/0/public/Assets
+
+Get information about the assets that are available for deposit, withdrawal, trading and earn.
+
+Request​
+QUERY PARAMETERS
+asset
+string
+
+Comma delimited list of assets to get info on (optional, default all available assets)
+
+Example: XBT,ETH
+aclass
+string
+
+Asset class (optional, default: currency)
+
+Example: currency
+Responses​
+200
+
+Asset info retrieved.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+property name*
+AssetInfo
+
+Asset Info
+
+aclass
+string
+
+Asset Class
+
+altname
+string
+
+Alternate name
+
+decimals
+integer
+
+Number of decimal places for record keeping amounts of this asset
+
+display_decimals
+integer
+
+Number of decimal places shown for display purposes in frontends
+
+collateral_value
+number
+
+Valuation as margin collateral (if applicable)
+
+status
+string
+
+Status of asset. Possible values: enabled, deposit_only, withdrawal_only, funding_temporarily_disabled.
+
+error
+string[]
+CURL
+GO
+NODEJS
+PHP
+PYTHON
+CURL
+	curl -L 'https://api.kraken.com/0/public/Assets' \
+
+	-H 'Accept: application/json'
+
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Parameters
+Show optional parameters
+SEND API REQUEST
+RESPONSE
+CLEAR
+
+Click the Send API Request button above and see the response here!
+
+Previous
+Get System Status
+Next
+Get Tradable Asset Pairs

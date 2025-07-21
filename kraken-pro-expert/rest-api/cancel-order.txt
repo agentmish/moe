@@ -1,0 +1,78 @@
+Spot REST APITradingCancel Order
+Cancel Order
+POST
+https://api.kraken.com/0/private/CancelOrder
+
+Cancel a particular open order (or set of open orders) by txid, userref or cl_ord_id
+
+API Key Permissions Required: Orders and trades - Create & modify orders or Orders and trades - Cancel & close orders
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+txid
+object
+
+Kraken order identifier (txid) or user reference (userref)
+
+oneOf
+string
+integer
+string
+cl_ord_id
+string
+
+An alphanumeric client order identifier which uniquely identifies an open order for each client.
+
+Responses​
+200
+
+Open order cancelled.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+count
+int32
+
+Number of orders cancelled
+
+pending
+boolean
+
+If true, orders are pending cancellation
+
+error
+array[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 1695828490,
+  "pair": "XBTUSD",
+  "txid": "OHYO67-6LP66-HMQ437"
+}
+
+Previous
+Amend Order
+Next
+Cancel All Orders

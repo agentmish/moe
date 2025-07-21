@@ -1,0 +1,26 @@
+GuidesSpot ExchangeWebsocketsAuthentication
+Spot Websockets Authentication
+Retrieving Authentication Token from REST​
+
+For the websockets API, the client must retrieve an authentication token via the REST endpoint GetWebSocketsToken.
+
+This token can be used as the token parameter in the message body for all authenticated websockets endpoints for the duration of the websockets connection.
+
+{
+  "event": "subscribe",
+  "subscription":
+  {
+    "name": "ownTrades",
+    "token": "WW91ciBhdXRoZW50aWNhdGlvbiB0b2tlbiBnb2VzIGhlcmUu"
+  }
+}
+
+CAUTION
+
+The websockets token should be used within 15 minutes of creation.
+
+Previous
+Introduction
+Next
+Book Checksum (v2)
+Retrieving Authentication Token from REST

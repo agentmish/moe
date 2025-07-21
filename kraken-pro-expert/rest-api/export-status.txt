@@ -1,0 +1,121 @@
+Spot REST APIAccount DataGet Export Report Status
+Get Export Report Status
+POST
+https://api.kraken.com/0/private/ExportStatus
+
+Get status of requested data exports.
+
+API Key Permissions Required: Data - Export data
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+report
+string
+REQUIRED
+
+Type of reports to inquire about
+
+Possible values: [trades, ledgers]
+
+Responses​
+200
+
+Export status retrieved
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object[]
+Array [
+id
+string
+
+Report ID
+
+descr
+string
+format
+string
+report
+string
+subtype
+string
+status
+string
+
+Status of the report
+
+Possible values: [Queued, Processing, Processed]
+
+flags
+string
+DEPRECATED
+fields
+string
+createdtm
+string
+
+UNIX timestamp of report request
+
+expiretm
+string
+DEPRECATED
+starttm
+string
+
+UNIX timestamp report processing began
+
+completedtm
+string
+
+UNIX timestamp report processing finished
+
+datastarttm
+string
+
+UNIX timestamp of the report data start time
+
+dataendtm
+string
+
+UNIX timestamp of the report data end time
+
+aclass
+string
+DEPRECATED
+asset
+string
+]
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 1695828490,
+  "report": "trades"
+}
+
+Previous
+Request Export Report
+Next
+Retrieve Data Export

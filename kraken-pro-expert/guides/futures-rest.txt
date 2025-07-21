@@ -1,0 +1,114 @@
+GuidesFutures ExchangeREST
+Futures REST
+Authentication​
+
+Calls to endpoints requiring authentication must include the following HTTP headers: APIKey and Authent. A third header, Nonce, may also be included (this is optional).
+
+Header name	Value	
+APIKey	Public api key (not the secret!)	required
+Authent	Authentication string	required
+Nonce	A unique incrementing nonce	optional
+
+Some HTTP endpoints allow performing sensitive operations such as placing orders or requesting a digital asset withdrawal. These private endpoints can therefore be called only through encrypted requests, and an authentication string (Authent) must be included in each such request. Authent is computed from the following inputs:
+
+PostData​
+
+postData is a & concatenation in the form <argument>=<value> and is specific to each HTTP endpoint.
+
+Example: To operate the endpoint orderbook you choose the argument symbol with value fi_xbtusd_180615. postData is then given by symbol=fi_xbtusd_180615.
+
+Nonce​
+
+Nonce is a continuously incrementing integer parameter. A good nonce is your system time in milliseconds (in string format). Our system tolerates nonces that are out of order for a brief period of time. Nonce is not required.
+
+Example: 1415957147987
+
+Many authentication issues are related with incorrect Nonce. A new pair of api keys will automatically reset the nonce and resolve these issues.
+
+Endpoint Path​
+
+endpointPath This is the URL extension of the endpoint.
+
+Example: /api/v3/orderbook
+
+API Secret​
+
+The api_secret is obtained as described under [generate-api-keys].
+
+Example: rttp4AzwRfYEdQ7R7X8Z/04Y4TZPa97pqCypi3xXxAqftygftnI6H9yGV+OcUOOJeFtZkr8mVwbAndU3Kz4Q+eG
+
+Authent​
+
+Based on these inputs, Authent needs to be computed as follows:
+
+Concatenate postData + Nonce + endpointPath
+Hash the result of step 1 with the SHA-256 algorithm
+Base64-decode your api_secret
+Use the result of step 3 to hash the result of the step 2 with the HMAC-SHA-512 algorithm
+Base64-encode the result of step 4
+Authentication example​
+
+Inclusion of HTTP headers in Java where apiKey, nonce, and authent are determined as described in this section. For full working examples in different programming languages, see [Sample Implementations][sample-implementations].
+
+
+String url = "https://futures.kraken.com/derivatives/api/v3/sendOrder";
+
+URL obj = new URL(url);
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+...
+con.setRequestProperty("APIKey", apiKey);
+con.setRequestProperty("Nonce", nonce);
+con.setRequestProperty("Authent", authent);
+
+Calls and Returns​
+Calls​
+
+Calls to endpoints that do not change the state of the server should be submitted with request type GET and with request parameters submitted in the URL. Calls to endpoints that do change the state of the server should be submitted with request type POST or PUT and with request parameters submitted in the request body.
+
+Returns​
+
+Example response of a successful call to the sendorder endpoint.
+
+{
+  "result": "success",
+  "serverTime": "2016-02-25T09:45:53.818Z",
+  "sendStatus": {
+    "receivedTime": "2016-02-25T09:45:53.601Z",
+    "status": "placed",
+    "order_id": "c18f0c17-9971-40e6-8e5b10df05d422f0"
+  }
+}
+
+
+The API's returns are in JSON format. If the call was successful, the return includes the requested information or feedback on the requested action.
+
+If a call was successful, the result key in the root structure will have the value success.
+
+Example response of a successful call to the sendorder endpoint where the desired operation was not performed.
+
+{
+   "result":"success",
+   "serverTime":"2016-02-25T09:45:53.818Z",
+   "sendStatus":{
+      "receivedTime":"2016-02-25T09:45:53.601Z",
+      "status":"insufficientAvailableFunds"
+   }
+}
+
+
+Note that if a call comes back with result equal to success, this merely means that the request has been received and assessed successfully. It does not necessarily mean that the desired operation has been performed. Details on the operation's status are returned in a status key, where applicable.
+
+Previous
+Rate Limits
+Next
+Websockets
+Authentication
+PostData
+Nonce
+Endpoint Path
+API Secret
+Authent
+Authentication example
+Calls and Returns
+Calls
+Returns

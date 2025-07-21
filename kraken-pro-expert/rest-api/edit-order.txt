@@ -1,0 +1,32 @@
+Spot REST APITradingEdit Order
+Edit Order
+POST
+/private/EditOrder
+
+Sends a request to edit the order parameters of a live order. When an order has been successfully modified, the original order will be cancelled and a new order will be created with the adjusted parameters a new txid will be returned in the response.
+
+NOTE
+
+The new AmendOrder endpoint resolves the caveats listed below and has additional performance gains.
+
+There are a number of caveats for EditOrder:
+
+triggered stop loss or profit take profit orders are not supported.
+orders with conditional close terms attached are not supported.
+orders where the executed volume is greater than the newly supplied volume will be rejected.
+cl_ord_id is not supported.
+existing executions will are associated with the original order and not copied to the amended order.
+queue position will not be maintained.
+
+API Key Permissions Required: Orders and trades - Create & modify orders and Orders and trades - Cancel & close orders
+
+Request​
+Responses​
+200
+
+Order edited.
+
+Previous
+Cancel Order Batch
+Next
+Funding

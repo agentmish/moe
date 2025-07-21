@@ -1,0 +1,96 @@
+Spot REST APIFundingGet Withdrawal Information
+Get Withdrawal Information
+POST
+https://api.kraken.com/0/private/WithdrawInfo
+
+Retrieve fee information about potential withdrawals for a particular asset, key and amount.
+
+API Key Permissions Required: Funds permissions - Query and Funds permissions - Withdraw
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+asset
+string
+REQUIRED
+
+Asset being withdrawn
+
+key
+string
+REQUIRED
+
+Withdrawal key name, as set up on your account
+
+amount
+string
+REQUIRED
+
+Amount to be withdrawn
+
+Responses​
+200
+
+Withdrawal information retrieved.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+
+Withdrawal Info
+
+method
+string
+
+Name of the withdrawal method that will be used
+
+limit
+string
+
+Maximum net amount that can be withdrawn right now
+
+amount
+string
+
+Net amount that will be sent, after fees
+
+fee
+string
+
+Amount of fees that will be paid
+
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 1695828271,
+  "asset": "XBT",
+  "key": "btc_testnet",
+  "amount": "0.725"
+}
+
+Previous
+Get Withdrawal Addresses
+Next
+Withdraw Funds

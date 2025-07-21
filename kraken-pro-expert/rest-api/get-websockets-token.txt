@@ -1,0 +1,62 @@
+Spot REST APITradingGet Websockets Token
+Get Websockets Token
+POST
+https://api.kraken.com/0/private/GetWebSocketsToken
+
+An authentication token must be requested via this REST API endpoint in order to connect to and authenticate with our Websockets API. The token should be used within 15 minutes of creation, but it does not expire once a successful Websockets connection and private subscription has been made and is maintained.
+
+API Key Permissions Required: WebSocket interface - On
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+Responses​
+200
+
+Websockets token retrieved.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+token
+string
+
+Websockets token
+
+expires
+integer
+
+Time (in seconds) after which the token expires
+
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 1695828436
+}
+
+Previous
+Cancel All Orders After X
+Next
+Add Order Batch
