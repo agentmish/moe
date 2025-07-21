@@ -1,5 +1,5 @@
 {
-  "name": "Kraken Pro Expert",
+  "name": "The Experts",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -13,7 +13,7 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:support@kraken.com"
+      "url": "#"
     }
   ],
   "navigation": [
