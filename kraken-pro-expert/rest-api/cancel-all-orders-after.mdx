@@ -1,0 +1,78 @@
+---
+title: "cancel all orders after"
+description: "Learn about cancel all orders after in the Kraken Pro REST API."
+sidebarTitle: "cancel all orders after"
+icon: "book"
+tag: "NEW"
+---
+Spot REST APITradingCancel All Orders After X
+Cancel All Orders After X
+POST
+https://api.kraken.com/0/private/CancelAllOrdersAfter
+
+CancelAllOrdersAfter provides a "Dead Man's Switch" mechanism to protect the client from network malfunction, extreme latency or unexpected matching engine downtime. The client can send a request with a timeout (in seconds), that will start a countdown timer which will cancel all client orders when the timer expires. The client has to keep sending new requests to push back the trigger time, or deactivate the mechanism by specifying a timeout of 0. If the timer expires, all orders are cancelled and then the timer remains disabled until the client provides a new (non-zero) timeout.
+
+The recommended use is to make a call every 15 to 30 seconds, providing a timeout of 60 seconds. This allows the client to keep the orders in place in case of a brief disconnection or transient delay, while keeping them safe in case of a network breakdown. It is also recommended to disable the timer ahead of regularly scheduled trading engine maintenance (if the timer is enabled, all orders will be cancelled when the trading engine comes back from downtime - planned or otherwise).
+
+API Key Permissions Required: Orders and trades - Create & modify orders or Orders and trades - Cancel & close orders
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+timeout
+integer
+REQUIRED
+
+Duration (in seconds) to set/extend the timer, it should be less than 86400 seconds.
+
+Responses​
+200
+
+Dead man's switch timer reset or disabled.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+currentTime
+string
+
+Timestamp (RFC3339 format) at which the request was received
+
+triggerTime
+string
+
+Timestamp (RFC3339 format) after which all orders will be cancelled, unless the timer is extended or disabled
+
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 1695828490,
+  "timeout": 120
+}
+
+Previous
+Cancel All Orders
+Next
+Get Websockets Token

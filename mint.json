@@ -1,0 +1,114 @@
+{
+  "name": "Kraken Pro Expert",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#00D9A7",
+    "light": "#00CDB7",
+    "dark": "#00D9A7"
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:support@kraken.com"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Introduction",
+      "pages": [
+        "index.mdx"
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "kraken-pro-expert/guides/custody-rest-auth.mdx",
+        "kraken-pro-expert/guides/custody-rest-ratelimits.mdx",
+        "kraken-pro-expert/guides/fix-auth.mdx",
+        "kraken-pro-expert/guides/fix-checksums.mdx",
+        "kraken-pro-expert/guides/fix-intro.mdx",
+        "kraken-pro-expert/guides/futures-introduction.mdx",
+        "kraken-pro-expert/guides/futures-rate-limits.mdx",
+        "kraken-pro-expert/guides/futures-rest.mdx",
+        "kraken-pro-expert/guides/futures-websockets.mdx",
+        "kraken-pro-expert/guides/global-intro.mdx",
+        "kraken-pro-expert/guides/spot-amends.mdx",
+        "kraken-pro-expert/guides/spot-errors.mdx",
+        "kraken-pro-expert/guides/spot-examples.mdx",
+        "kraken-pro-expert/guides/spot-ratelimits.mdx",
+        "kraken-pro-expert/guides/spot-rest-auth.mdx",
+        "kraken-pro-expert/guides/spot-rest-earn.mdx",
+        "kraken-pro-expert/guides/spot-rest-intro.mdx",
+        "kraken-pro-expert/guides/spot-rest-ratelimits.mdx",
+        "kraken-pro-expert/guides/spot-ws-auth.mdx",
+        "kraken-pro-expert/guides/spot-ws-book-v1.mdx",
+        "kraken-pro-expert/guides/spot-ws-book-v2.mdx",
+        "kraken-pro-expert/guides/spot-ws-intro.mdx",
+        "kraken-pro-expert/guides/spot-ws-l3-v2.mdx"
+      ]
+    },
+    {
+      "group": "REST API",
+      "pages": [
+        "kraken-pro-expert/rest-api/account-transfer.mdx",
+        "kraken-pro-expert/rest-api/add-export.mdx",
+        "kraken-pro-expert/rest-api/add-order-batch.mdx",
+        "kraken-pro-expert/rest-api/add-order.mdx",
+        "kraken-pro-expert/rest-api/allocate-strategy.mdx",
+        "kraken-pro-expert/rest-api/amend-order.mdx",
+        "kraken-pro-expert/rest-api/cancel-all-orders-after.mdx",
+        "kraken-pro-expert/rest-api/cancel-all-orders.mdx",
+        "kraken-pro-expert/rest-api/cancel-order-batch.mdx",
+        "kraken-pro-expert/rest-api/cancel-order.mdx",
+        "kraken-pro-expert/rest-api/cancel-withdrawal.mdx",
+        "kraken-pro-expert/rest-api/create-subaccount.mdx",
+        "kraken-pro-expert/rest-api/deallocate-strategy.mdx",
+        "kraken-pro-expert/rest-api/edit-order.mdx",
+        "kraken-pro-expert/rest-api/export-status.mdx",
+        "kraken-pro-expert/rest-api/get-account-balance.mdx",
+        "kraken-pro-expert/rest-api/get-allocate-strategy-status.mdx",
+        "kraken-pro-expert/rest-api/get-asset-info.mdx",
+        "kraken-pro-expert/rest-api/get-closed-orders.mdx",
+        "kraken-pro-expert/rest-api/get-deallocate-strategy-status.mdx",
+        "kraken-pro-expert/rest-api/get-deposit-addresses.mdx",
+        "kraken-pro-expert/rest-api/get-deposit-methods.mdx",
+        "kraken-pro-expert/rest-api/get-extended-balance.mdx",
+        "kraken-pro-expert/rest-api/get-ledgers-info.mdx",
+        "kraken-pro-expert/rest-api/get-ledgers.mdx",
+        "kraken-pro-expert/rest-api/get-ohlc-data.mdx",
+        "kraken-pro-expert/rest-api/get-open-orders.mdx",
+        "kraken-pro-expert/rest-api/get-open-positions.mdx",
+        "kraken-pro-expert/rest-api/get-order-amends.mdx",
+        "kraken-pro-expert/rest-api/get-order-book.mdx",
+        "kraken-pro-expert/rest-api/get-orders-info.mdx",
+        "kraken-pro-expert/rest-api/get-recent-spreads.mdx",
+        "kraken-pro-expert/rest-api/get-recent-trades.mdx",
+        "kraken-pro-expert/rest-api/get-server-time.mdx",
+        "kraken-pro-expert/rest-api/get-status-recent-deposits.mdx",
+        "kraken-pro-expert/rest-api/get-status-recent-withdrawals.mdx",
+        "kraken-pro-expert/rest-api/get-system-status.mdx",
+        "kraken-pro-expert/rest-api/get-ticker-information.mdx",
+        "kraken-pro-expert/rest-api/get-tradable-asset-pairs.mdx",
+        "kraken-pro-expert/rest-api/get-trade-balance.mdx",
+        "kraken-pro-expert/rest-api/get-trade-history.mdx",
+        "kraken-pro-expert/rest-api/get-trade-volume.mdx",
+        "kraken-pro-expert/rest-api/get-trades-info.mdx",
+        "kraken-pro-expert/rest-api/get-websockets-token.mdx",
+        "kraken-pro-expert/rest-api/get-withdrawal-addresses.mdx",
+        "kraken-pro-expert/rest-api/get-withdrawal-information.mdx",
+        "kraken-pro-expert/rest-api/get-withdrawal-methods.mdx",
+        "kraken-pro-expert/rest-api/list-allocations.mdx",
+        "kraken-pro-expert/rest-api/list-strategies.mdx",
+        "kraken-pro-expert/rest-api/remove-export.mdx",
+        "kraken-pro-expert/rest-api/retrieve-export.mdx",
+        "kraken-pro-expert/rest-api/wallet-transfer.mdx",
+        "kraken-pro-expert/rest-api/withdraw-funds.mdx"
+      ]
+    }
+  ]
+}
+

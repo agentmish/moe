@@ -1,0 +1,76 @@
+---
+title: "create suuaccount"
+description: "Learn about create suuaccount in the Kraken Pro REST API."
+sidebarTitle: "create suuaccount"
+icon: "book"
+tag: "NEW"
+---
+Spot REST APISubaccountsCreate Subaccount
+Create Subaccount
+POST
+https://api.kraken.com/0/private/CreateSubaccount
+
+Create a trading subaccount. Note: CreateSubaccount must be called using an API key from the master account.
+
+API Key Permissions Required: Funds permissions - Withdraw
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+username
+string
+REQUIRED
+
+Username for the subaccount
+
+email
+string
+REQUIRED
+
+Email address for the subaccount
+
+Responses​
+200
+
+Subaccount created.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+boolean
+
+Whether subaccount creation was successful or not.
+
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 1695828271,
+  "username": "abc123",
+  "email": "abc123@gmail.com"
+}
+
+Previous
+Subaccounts
+Next
+Account Transfer

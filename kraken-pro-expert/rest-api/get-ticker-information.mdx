@@ -1,0 +1,112 @@
+---
+title: "get ticker information"
+description: "Learn about get ticker information in the Kraken Pro REST API."
+sidebarTitle: "get ticker information"
+icon: "book"
+tag: "NEW"
+---
+Spot REST APIMarket DataGet Ticker Information
+Get Ticker Information
+GET
+https://api.kraken.com/0/public/Ticker
+
+Get ticker information for all or requested markets. To clarify usage, note that
+
+Today's prices start at midnight UTC
+Leaving the pair parameter blank will return tickers for all tradeable assets on Kraken
+Request​
+QUERY PARAMETERS
+pair
+string
+
+Asset pair to get data for (optional, default: all tradeable exchange pairs)
+
+Example: XBTUSD
+Responses​
+200
+
+Ticker info retrieved.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+property name*
+AssetTickerInfo
+
+Asset Ticker Info
+
+a
+string[]
+
+Ask [<price>, <whole lot volume>, <lot volume>]
+
+b
+string[]
+
+Bid [<price>, <whole lot volume>, <lot volume>]
+
+c
+string[]
+
+Last trade closed [<price>, <lot volume>]
+
+v
+string[]
+
+Volume [<today>, <last 24 hours>]
+
+p
+string[]
+
+Volume weighted average price [<today>, <last 24 hours>]
+
+t
+integer[]
+
+Number of trades [<today>, <last 24 hours>]
+
+l
+string[]
+
+Low [<today>, <last 24 hours>]
+
+h
+string[]
+
+High [<today>, <last 24 hours>]
+
+o
+string
+
+Today's opening price
+
+error
+string[]
+CURL
+GO
+NODEJS
+PHP
+PYTHON
+CURL
+	curl -L 'https://api.kraken.com/0/public/Ticker' \
+
+	-H 'Accept: application/json'
+
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Parameters
+Show optional parameters
+SEND API REQUEST
+RESPONSE
+CLEAR
+
+Click the Send API Request button above and see the response here!
+
+Previous
+Get Tradable Asset Pairs
+Next
+Get OHLC Data

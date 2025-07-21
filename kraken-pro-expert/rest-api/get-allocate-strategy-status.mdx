@@ -1,0 +1,85 @@
+---
+title: "get allocate strategy status"
+description: "Learn about get allocate strategy status in the Kraken Pro REST API."
+sidebarTitle: "get allocate strategy status"
+icon: "book"
+tag: "NEW"
+---
+Spot REST APIEarnGet Allocation Status
+Get Allocation Status
+POST
+https://api.kraken.com/0/private/Earn/AllocateStatus
+
+Get the status of the last allocation request.
+
+Requires either the Earn Funds or Query Funds API key permission.
+
+(De)allocation operations are asynchronous and this endpoint allows client to retrieve the status of the last dispatched operation. There can be only one (de)allocation request in progress for given user and strategy.
+
+The pending attribute in the response indicates if the previously dispatched operation is still in progress (true) or has successfully completed (false). If the dispatched request failed with an error, then HTTP error is returned to the client as if it belonged to the original request.
+
+Following specific errors within Earnings class can be returned by this method:
+
+Insufficient funds: EEarnings:Insufficient funds:Insufficient funds to complete the (de)allocation request
+User cap exceeded: EEarnings:Above max:The allocation exceeds user limit for the strategy
+Total cap exceeded: EEarnings:Above max:The allocation exceeds the total strategy limit
+Minimum allocation: EEarnings:Below min:(De)allocation operation amount less than minimum
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+strategy_id
+string
+REQUIRED
+
+ID of the earn strategy, call Earn/Strategies to list available strategies
+
+Responses​
+200
+
+Response
+
+APPLICATION/JSON
+Schema
+SCHEMA
+error
+string[]
+result
+object
+NULLABLE
+
+Status of async earn operation
+
+pending
+boolean
+
+true if an operation is still in progress on the same strategy.
+
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 30295839,
+  "strategy_id": "ESRFUO3-Q62XD-WIOIL7"
+}
+
+Previous
+Deallocate Earn Funds
+Next
+Get Deallocation Status

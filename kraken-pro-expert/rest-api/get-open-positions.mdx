@@ -1,0 +1,171 @@
+---
+title: "get open positions"
+description: "Learn about get open positions in the Kraken Pro REST API."
+sidebarTitle: "get open positions"
+icon: "book"
+tag: "NEW"
+---
+Spot REST APIAccount DataGet Open Positions
+Get Open Positions
+POST
+https://api.kraken.com/0/private/OpenPositions
+
+Get information about open margin positions.
+
+API Key Permissions Required: Orders and trades - Query open orders & trades
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+txid
+string
+
+Comma delimited list of txids to limit output to
+
+docalcs
+boolean
+
+Whether to include P&L calculations
+
+Default value: false
+consolidation
+string
+
+Consolidate positions by market/pair
+
+Possible values: [market]
+
+Responses​
+200
+
+Open positions info retrieved.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object
+property name*
+txid
+ordertxid
+string
+
+Order ID responsible for the position
+
+posstatus
+string
+
+Position status
+
+Possible values: [open]
+
+pair
+string
+
+Asset pair
+
+time
+number
+
+Unix timestamp of trade
+
+type
+string
+
+Direction (buy/sell) of position
+
+ordertype
+string
+
+Order type used to open position
+
+cost
+string
+
+Opening cost of position (in quote currency)
+
+fee
+string
+
+Opening fee of position (in quote currency)
+
+vol
+string
+
+Position opening size (in base currency)
+
+vol_closed
+string
+
+Quantity closed (in base currency)
+
+margin
+string
+
+Initial margin consumed (in quote currency)
+
+value
+string
+
+Current value of remaining position (if docalcs requested)
+
+net
+string
+
+Unrealised P&L of remaining position (if docalcs requested)
+
+terms
+string
+
+Funding cost and term of position
+
+rollovertm
+string
+
+Timestamp of next margin rollover fee
+
+misc
+string
+
+Comma delimited list of add'l info
+
+oflags
+string
+
+Comma delimited list of opening order flags
+
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+Example (from schema)
+get Open Position
+{
+  "nonce": 0,
+  "txid": "string",
+  "docalcs": false,
+  "consolidation": "market"
+}
+
+Previous
+Query Trades Info
+Next
+Get Ledgers Info

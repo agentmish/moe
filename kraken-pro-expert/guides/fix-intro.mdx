@@ -1,0 +1,51 @@
+---
+title: "fix intro"
+description: "Learn about fix intro in the Kraken Pro REST API."
+sidebarTitle: "fix intro"
+icon: "book"
+tag: "NEW"
+---
+GuidesSpot ExchangeFIXIntroduction
+FIX Introduction
+Overview​
+
+The Financial Information Exchange (FIX) API protocol offered by Kraken Exchange is a standardized and widely adopted messaging protocol designed to facilitate electronic communication between institutional clients and the exchange. Kraken's FIX API is tailored to meet the unique needs of institutional clients, offering a direct and efficient channel for trading cryptocurrencies. It offers access to both the Spot and the Derivatives exchange.
+
+Kraken FIX API allows clients to trade, access liquidity and receive streaming market data.  You can find the Rules of Engagement of the Kraken FIX API here
+
+In order to get access to our FIX API please reach out to your Account Manager.
+
+Session Protocol​
+
+The Kraken implementation of the FIX Protocol is based on FIX 4.4.
+
+Please refer to the FIX v4.4 protocol document ( https://fixtrading.org/standards ) for details about the FIX Protocol. This protocol layer offers session management capabilities such as establishing a FIX session, authentication, application/administrative messaging over TCP/IP, sequencing of messages, heartbeats and gap fills.
+
+Hours of Operation  ​
+
+Both market data and trading sessions will be operated on a 24/7 schedule with a logical session roll over everyday at 10PM UTC. This maintenance will last for 30s everyday and both Trading and Market Data sequence numbers will be reset to 0.
+
+Connectivity Details​
+
+Before logging into their FIX session, clients must have their incoming IP addresses whitelisted and establish a secure channel to the provided FIX API. Kraken will provide a pair of designated compIDs, URL and ports to establish a FIX session. Trading and market data endpoints will be served over different ports. Connection with the FIX API need to be done using TCP SSL with TLS 1.3.
+
+Trading Rate limits​
+
+Kraken APIs use trading rate limits to protect the APIs against malicious usage, and to protect our markets against order book manipulation.
+
+The full documentation about trading Rate limits is available here.
+
+FIX Dictionary​
+
+The latest FIX4.4 xml dictionary used to validated the different messages and fields used for the Kraken FIX API can be downloaded here.
+
+Previous
+Book Checksum (v1)
+Next
+Authentication
+Overview
+Session Protocol
+Hours of Operation
+Connectivity Details
+Trading Rate limits
+FIX Dictionary

@@ -1,0 +1,134 @@
+---
+title: "Custody Rest Auth"
+description: "Custody REST Authentication"
+sidebarTitle: "Custody Rest Auth"
+icon: "book"
+tag: "NEW"
+---
+
+1|GuidesCustodyAuthentication
+2|Custody REST Authentication
+3|
+4|The Custody REST API uses API keys to authenticate and authorize API requests. A secure authentication process is enforced to ensure high security both when creating API keys and when making API calls. To authenticate API requests, you must first create an API user and obtain API key credentials.
+5|
+6|API Users and Access Control​
+7|
+8|API users function similarly to human users in that they are assigned roles, permissions, and vault access at the time of creation. When an API user interacts with the system, these settings are enforced to control which data they can access and which actions they can perform.
+9|
+10|However, unlike regular users, API users cannot log in to the Custody application. Their interaction with the system is limited strictly to API calls, making them an essential component for programmatic access while maintaining strict security boundaries.
+11|
+12|Creating a new API Key​
+13|
+14|A system administrator must initiate the creation of a new API user before generating an API key:
+15|
+16|Log in to your Custody environment
+17|Navigate to Settings → Users → API Users
+18|Submit a request for a new API user and complete the two-factor authentication (2FA) process
+19|The request will appear under Tasks → Pending until it is approved by the Admin Quorum
+20|Once approved, open the request details to view the API key information
+21|The admin user who submitted the request can access the API key and secret from the API key details page
+22|CAUTION
+23|
+24|Only the admin user who created the API user request can view the API key and secret. Store these credentials securely. For security reasons, the API key and secret will not be viewable again after they are generated. API key credentials are a prime target for malicious actors. Ensure you follow security best practices to protect them.
+25|
+26|Authentication Parameters​
+27|
+28|For the REST API, the following parameters are used for authentication to endpoints which contain private data:
+29|
+30|API-Key HTTP header parameter: the public key from your API key-pair.
+31|API-Sign HTTP header parameter: encrypted signature of message.
+32|nonce payload parameter: always increasing, unsigned 64-bit integer.
+33|Setting the API-Key Parameter​
+34|
+35|The value for the API-Key HTTP header parameter is your public API key.
+36|
+37|An API key-pair is required to access the authenticated endpoints.
+38|
+39|CAUTION
+40|
+41|From your API key-pair, clearly identify which key is public and which key is private.
+42|
+43|The public key is sent in the API-Key header parameter.
+44|The private key is never sent, it is only used to encode the signature for API-Sign header parameter.
+45|Setting the API-Sign Parameter​
+46|
+47|The value for the API-Sign HTTP header parameter is a signature generated from encoding your private API key, nonce, encoded payload, and URI path.
+48|
+49|  HMAC-SHA512 of (URI path + SHA256(nonce + POST data)) and base64 decoded secret API key
+50|
+51|
+52|Note: The URI path used for API-Sign should be the part starting with \"/0/private\" of the API URL.
+53|
+54|Examples​
+55|
+56|The following is a specific example of a signature generated with a particular private key, nonce, and payload corresponding to a new limit order (buy 1.25 XBTUSD at $37,500). If your code is generating a different signature (API-Sign) for this example, then there is likely an issue with your application of the above methodology. Code snippets for generating the signature in Python, Golang and Node.js follow below.
+57|
+58|Field	Value
+59|Private Key	kQH5HW/8p1uGOVjbgWA7FunAmGO8lsSUXNsu3eow76sz84Q18fWxnyRzBHCd3pd5nE9qa99HAZtuZuj6F1huXg==
+60|Nonce	1616492376594
+61|Encoded Payload	nonce=1616492376594
+62|URI Path	/0/private/GetCustodyTask?id=TGWOJ4JQPOTZT2
+63|API-Sign	2rM09q8HG7LvjivBitQUybwZ/DSeO8+i0U/at/wclH2Jma6gMaE/0Nw9dyLR+ykMd5eWCngSL4K58i6uJzXDCw==
+64|Python
+65|Go
+66|Node JS
+67|import urllib.parse
+68|import hashlib
+69|import hmac
+70|import base64
+71|
+72|def get_kraken_signature(urlpath, data, secret):
+73|
+74|    if isinstance(data, str):
+75|        encoded = (str(json.loads(data)[\"nonce\"]) + data).encode()
+76|    else:
+77|        encoded = (str(data[\"nonce\"]) + urllib.parse.urlencode(data)).encode()
+78|    message = urlpath.encode() + hashlib.sha256(encoded).digest()
+79|
+80|    mac = hmac.new(base64.b64decode(secret), message, hashlib.sha512)
+81|    sigdigest = base64.b64encode(mac.digest())
+82|    return sigdigest.decode()
+83|
+84|api_sec = \"kQH5HW/8p1uGOVjbgWA7FunAmGO8lsSUXNsu3eow76sz84Q18fWxnyRzBHCd3pd5nE9qa99HAZtuZuj6F1huXg==\"
+85|
+86|payload = {
+87|  \"nonce\": 1616492376594,
+88|}
+89|
+90|signature = get_kraken_signature(\"/0/private/GetCustodyTask?id=TGWOJ4JQPOTZT2\", payload, api_sec)
+91|print(\"API-Sign: {}\".format(signature))
+92|
+93|
+94|Setting the nonce Parameter​
+95|
+96|The value for the nonce payload body parameter is an always increasing, unsigned 64-bit integer for each request that is made with a particular API key.
+97|
+98|While a simple counter would provide a valid nonce, a more usual method of generating a valid nonce is to use e.g. a UNIX timestamp in milliseconds. There is no way to reset the nonce for an API key to a lower value, so be sure to use a nonce generation method that won't produce numbers less than the previous nonce.
+99|
+100|Too many requests with invalid nonces (EAPI:Invalid nonce) can result in temporary bans.
+101|
+102|Problems can arise from requests arriving out of order due to API keys being shared across processes, or from system clock drift/recalibration. An optional \"nonce window\" can be configured to specify a tolerance between nonce values.
+103|
+104|Examples​
+105|
+106|The following are some examples of how to generate valid millisecond resolution nonce values in different programming languages:
+107|
+108|Python
+109|JavaScript
+110|PHP
+111|import time
+112|
+113|api_nonce = time.time_ns()
+114|
+115|Previous
+116|Checksums
+117|Next
+118|Rate Limits
+119|API Users and Access Control
+120|Creating a new API Key
+121|Authentication Parameters
+122|Setting the API-Key Parameter
+123|Setting the API-Sign Parameter
+124|Examples
+125|Setting the nonce Parameter
+126|Examples

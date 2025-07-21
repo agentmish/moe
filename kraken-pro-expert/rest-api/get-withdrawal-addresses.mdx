@@ -1,0 +1,125 @@
+---
+title: "get withdrawal addresses"
+description: "Learn about get withdrawal addresses in the Kraken Pro REST API."
+sidebarTitle: "get withdrawal addresses"
+icon: "book"
+tag: "NEW"
+---
+Spot REST APIFundingGet Withdrawal Addresses
+Get Withdrawal Addresses
+POST
+https://api.kraken.com/0/private/WithdrawAddresses
+
+Retrieve a list of withdrawal addresses available for the user.
+
+API Key Permissions Required: Funds permissions - Query and Funds permissions - Withdraw
+
+Request​
+APPLICATION/JSON
+BODYREQUIRED
+nonce
+int64
+REQUIRED
+
+Nonce used in construction of API-Sign header
+
+asset
+string
+
+Filter addresses for specific asset
+
+aclass
+string
+
+Filter addresses for specific asset class
+
+Default value: currency
+method
+string
+
+Filter addresses for specific method
+
+key
+string
+
+Find address for by withdrawal key name, as set up on your account
+
+verified
+boolean
+
+Filter by verification status of the withdrawal address. Withdrawal addresses successfully completing email confirmation will have a verification status of true.
+
+Responses​
+200
+
+Withdrawal addresses retrieved.
+
+APPLICATION/JSON
+Schema
+SCHEMA
+result
+object[]
+
+Withdrawal Addresses
+
+Array [
+address
+string
+
+Withdrawal address
+
+asset
+string
+
+Name of asset being withdrawn
+
+method
+string
+
+Name of the withdrawal method
+
+key
+string
+
+Withdrawal key name, as set up on your account
+
+tag
+string
+
+Contains tags for XRP deposit addresses and memos for STX, XLM, and EOS deposit addresses
+
+verified
+boolean
+
+Verification status of withdrawal address
+
+]
+error
+string[]
+AUTHORIZATION: API-KEY
+GO
+NODEJS
+PYTHON
+NATIVE
+REQUEST
+COLLAPSE ALL
+Base URL
+https://api.kraken.com/0
+Auth
+API-Key
+API-Sign
+Body
+ REQUIRED
+{
+  "nonce": 0,
+  "asset": "string",
+  "aclass": "currency",
+  "method": "string",
+  "key": "string",
+  "verified": true
+}
+
+Previous
+Get Withdrawal Methods
+Next
+Get Withdrawal Information
